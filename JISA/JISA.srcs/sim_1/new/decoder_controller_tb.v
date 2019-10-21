@@ -32,7 +32,6 @@ module decoder_controller_tb(
     wire halt;
     wire mem_read;
     wire reg_write;
-    reg reset;
     
     decoder_controller uut (
         .instr(instr),
@@ -42,15 +41,10 @@ module decoder_controller_tb(
         .mem_write(mem_write),
         .halt(halt),
         .mem_read(mem_read),
-        .reg_write(reg_write),
-        .reset(reset)
+        .reg_write(reg_write)
     );
     
     initial begin
-        reset <= 1;
-        #100;
-        reset<=0;
-        #100;
         for (i = 0; i < 16; i = i + 1) begin
             instr <= i;
             #100;

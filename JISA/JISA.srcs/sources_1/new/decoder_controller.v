@@ -21,15 +21,22 @@
 
 module decoder_controller(
     input [15:0] instr,
-    output reg [1:0] alu_op,
-    output reg src1_sel,
-    output reg src2_sel,
-    output reg mem_write,
-    output reg halt,
-    output reg mem_read,
-    output reg reg_write,
-    input reset
+    output [1:0] alu_op,
+    output src1_sel,
+    output src2_sel,
+    output mem_write,
+    output halt,
+    output mem_read,
+    output reg_write
     );
+    
+    reg [1:0] alu_op_in;
+    reg src1_sel_in;
+    reg src2_sel_in;
+    reg mem_write_in;
+    reg halt_in;
+    reg mem_read_in;
+    reg reg_write_in;
     
     `define HALT 'b000
     `define ADD_SUB 'b100
@@ -39,88 +46,99 @@ module decoder_controller(
     `define BRANCH_JUMP 'b101
     `define OP1 3
     
-    always @ (reset) begin
-        src1_sel = 0;
-        src2_sel = 0;
-        mem_write = 0;
-        halt = 0;
-        mem_read = 0;
-        reg_write = 0;
-        alu_op = 'b00;
-    end
+    assign halt = halt_in;
+    assign alu_op = alu_op_in;
+    assign src1_sel = src1_sel_in;
+    assign src2_sel = src2_sel_in;
+    assign mem_write = mem_write_in;
+    assign halt = halt_in;
+    assign mem_read = mem_read_in;
+    assign reg_write = reg_write_in;
     
     always @ (instr[15:0]) begin
         case (instr[2:0])
-        `HALT: begin
-            halt = 1;
+        //halt or invalid
+        default: begin
+            halt_in= 1;
+            alu_op_in = 'b00;
+            src1_sel_in = 'b0;
+            src2_sel_in = 'b0;
+            mem_write_in = 'b0;
+            mem_read_in = 'b0;
+            reg_write_in = 'b0;
          end
         `ADD_SUB: begin
                 //SUB
                 if (instr[`OP1]) begin
-                    alu_op = 'b01;
+                    alu_op_in = 'b01;
                 end
                 //ADD
                 else begin
-                    alu_op = 'b00;
+                    alu_op_in = 'b00;
                 end
                 
-                src1_sel = 'b0;
-                src2_sel = 'b0;
-                mem_write = 'b0;
-                mem_read = 'b0;
-                reg_write = 'b1;
+                src1_sel_in = 'b0;
+                src2_sel_in = 'b0;
+                mem_write_in = 'b0;
+                mem_read_in = 'b0;
+                reg_write_in = 'b1;
+                halt_in= 0;
            end
         `OR_AND: begin
                 //AND
                 if (instr[`OP1]) begin
-                    alu_op = 'b11;
+                    alu_op_in = 'b11;
                 end
                 //OR
                 else begin
-                    alu_op = 'b10;
+                    alu_op_in = 'b10;
                 end
                 
-                src1_sel = 'b0;
-                src2_sel = 'b0;
-                mem_write = 'b0;
-                mem_read = 'b0;
-                reg_write = 'b1;
+                src1_sel_in = 'b0;
+                src2_sel_in = 'b0;
+                mem_write_in = 'b0;
+                mem_read_in = 'b0;
+                reg_write_in = 'b1;
+                halt_in= 0;
             end
         `LOAD: begin
-                alu_op = 'b00;
+                alu_op_in = 'b00;
                 
                 //LOADI
                 if (instr[`OP1]) begin
-                    mem_read = 'b0;
-                    src1_sel = 'b1;
-                    src2_sel = 'b1;
+                    mem_read_in = 'b0;
+                    src1_sel_in = 'b1;
+                    src2_sel_in = 'b1;
                 end
                 //LOADW
                 else begin
-                    mem_read = 'b1;
-                    src1_sel = 'b0;
-                    src2_sel = 'b1;
+                    mem_read_in = 'b1;
+                    src1_sel_in = 'b0;
+                    src2_sel_in = 'b1;
                 end
                 
-                mem_write = 'b0;
-                reg_write = 'b1;
+                mem_write_in = 'b0;
+                reg_write_in = 'b1;
+                halt_in= 0;
             end
         `STORE: begin
             //STOREW
-            alu_op = 'b00;
-            src1_sel = 'b0;
-            src2_sel = 'b1;
+            alu_op_in = 'b00;
+            src1_sel_in = 'b0;
+            src2_sel_in = 'b1;
             
-            mem_read = 'b0;
-            mem_write = 'b1;
-            reg_write = 'b0;
+            mem_read_in = 'b0;
+            mem_write_in = 'b1;
+            reg_write_in = 'b0;
+            halt_in= 0;
         end
         `BRANCH_JUMP: begin
-            src1_sel = 'b0;
-            alu_op = 'b01;
-            mem_read = 'b0;
-            mem_write = 'b0;
-            reg_write = 'b0;
+            src1_sel_in = 'b0;
+            alu_op_in = 'b01;
+            mem_read_in = 'b0;
+            mem_write_in = 'b0;
+            reg_write_in = 'b0;
+            halt_in= 0;
         end
         
         endcase

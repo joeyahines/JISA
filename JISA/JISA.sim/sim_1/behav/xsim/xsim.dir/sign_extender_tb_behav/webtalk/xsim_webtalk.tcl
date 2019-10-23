@@ -1,6 +1,6 @@
-webtalk_init -webtalk_dir /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.sim/sim_1/behav/xsim/xsim.dir/branch_controller_tb_behav/webtalk/
+webtalk_init -webtalk_dir /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.sim/sim_1/behav/xsim/xsim.dir/sign_extender_tb_behav/webtalk/
 webtalk_register_client -client project
-webtalk_add_data -client project -key date_generated -value "Tue Oct 22 13:18:42 2019" -context "software_version_and_target_device"
+webtalk_add_data -client project -key date_generated -value "Wed Oct 23 18:08:02 2019" -context "software_version_and_target_device"
 webtalk_add_data -client project -key product_version -value "XSIM v2019.1.2 (64-bit)" -context "software_version_and_target_device"
 webtalk_add_data -client project -key build_version -value "2615518" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_platform -value "LIN64" -context "software_version_and_target_device"
@@ -14,20 +14,19 @@ webtalk_add_data -client project -key target_package -value "not_applicable" -co
 webtalk_add_data -client project -key target_speed -value "not_applicable" -context "software_version_and_target_device"
 webtalk_add_data -client project -key random_id -value "aee7d0ca-2fd3-49d0-ba8f-298443cc2bdd" -context "software_version_and_target_device"
 webtalk_add_data -client project -key project_id -value "ba9e03a6e6d64fadbfcc49347b47de25" -context "software_version_and_target_device"
-webtalk_add_data -client project -key project_iteration -value "12" -context "software_version_and_target_device"
+webtalk_add_data -client project -key project_iteration -value "22" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_name -value "Ubuntu" -context "user_environment"
 webtalk_add_data -client project -key os_release -value "Ubuntu 18.04.3 LTS" -context "user_environment"
 webtalk_add_data -client project -key cpu_name -value "Intel(R) Core(TM) i7-4720HQ CPU @ 2.60GHz" -context "user_environment"
-webtalk_add_data -client project -key cpu_speed -value "1914.596 MHz" -context "user_environment"
+webtalk_add_data -client project -key cpu_speed -value "1488.004 MHz" -context "user_environment"
 webtalk_add_data -client project -key total_processors -value "1" -context "user_environment"
 webtalk_add_data -client project -key system_ram -value "16.000 GB" -context "user_environment"
 webtalk_register_client -client xsim
-webtalk_add_data -client xsim -key runall -value "true" -context "xsim\\command_line_options"
 webtalk_add_data -client xsim -key Command -value "xsim" -context "xsim\\command_line_options"
 webtalk_add_data -client xsim -key trace_waveform -value "true" -context "xsim\\usage"
 webtalk_add_data -client xsim -key runtime -value "1 us" -context "xsim\\usage"
 webtalk_add_data -client xsim -key iteration -value "0" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Simulation_Time -value "0.14_sec" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Simulation_Memory -value "125912_KB" -context "xsim\\usage"
-webtalk_transmit -clientid 92378598 -regid "" -xml /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.sim/sim_1/behav/xsim/xsim.dir/branch_controller_tb_behav/webtalk/usage_statistics_ext_xsim.xml -html /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.sim/sim_1/behav/xsim/xsim.dir/branch_controller_tb_behav/webtalk/usage_statistics_ext_xsim.html -wdm /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.sim/sim_1/behav/xsim/xsim.dir/branch_controller_tb_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
+webtalk_add_data -client xsim -key Simulation_Time -value "0.01_sec" -context "xsim\\usage"
+webtalk_add_data -client xsim -key Simulation_Memory -value "125648_KB" -context "xsim\\usage"
+webtalk_transmit -clientid 3864511396 -regid "" -xml /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.sim/sim_1/behav/xsim/xsim.dir/sign_extender_tb_behav/webtalk/usage_statistics_ext_xsim.xml -html /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.sim/sim_1/behav/xsim/xsim.dir/sign_extender_tb_behav/webtalk/usage_statistics_ext_xsim.html -wdm /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.sim/sim_1/behav/xsim/xsim.dir/sign_extender_tb_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
 webtalk_terminate

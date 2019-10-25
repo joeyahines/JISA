@@ -30,17 +30,20 @@ module branch_controller_tb(
     wire gt;
     reg [2:0] status;
     wire branch;
+    wire [3:0] branch_reg_addr;
     
     branch_controller uut (
         .instr(instr),
         .eq(eq),
         .lt(lt),
         .gt(gt),
-        .branch(branch)
+        .branch(branch),
+        .branch_reg_addr(branch_reg_addr)
     );
     
     integer i;
     integer j;
+    integer k;
     
     assign eq = status[0];
     assign lt = status[1];
@@ -50,9 +53,12 @@ module branch_controller_tb(
         instr <= 16'b101;
         for (i = 0; i < 9; i = i + 1) begin
             for (j = 0; j < 9; j = j + 1) begin
-                status[2:0] = j;
-                instr[5:3] = i;
-                #10;
+                for (k = 0; k < 4; k = k + 1) begin
+                    status[2:0] = j;
+                    instr[5:3] = i;
+                    instr[7:6] = k;
+                    #10;
+                end
             end
         end
     end

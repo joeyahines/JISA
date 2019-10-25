@@ -24,19 +24,25 @@ module program_counter(
     input [15:0] in,
     output [15:0] out,
     input clk,
-    input reset
+    input reset,
+    input halt
     );
     
     reg [15:0] pc;
+    reg stop;
     
-    assign out = pc;
+    assign out = stop ? 16'bz : pc;
     
     always @ (posedge clk) begin
-        if (reset) begin
-            pc <= 0;
-        end
-        else begin
-            pc <= in;
-        end
-    end      
+        pc = in;
+    end    
+    
+    always @ (posedge reset) begin
+         stop = 0;
+         pc = 0;
+    end
+    
+    always @ (posedge halt) begin;
+        stop = 1;
+    end
 endmodule

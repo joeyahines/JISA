@@ -24,9 +24,11 @@ module reg_file(
     input [3:0] read_1_addr,
     input [3:0] read_2_addr,
     input [3:0] read_3_addr,
+    input [3:0] read_4_addr,
     output [15:0] read_1_data,
     output [15:0] read_2_data,
     output [15:0] read_3_data,
+    output [15:0] read_4_data,
     input [3:0] write_addr,
     input [15:0] write_data,
     input write_en,
@@ -37,11 +39,13 @@ module reg_file(
     reg [15:0] out1;
     reg [15:0] out2;
     reg [15:0] out3;
+    reg [15:0] out4;
     reg [15:0] reg_file [15:0];
     
     assign read_1_data = out1;
     assign read_2_data = out2;
     assign read_3_data = out3;
+    assign read_4_data = out3;
 
     always @ (reset) begin
         reg_file[0] <= 16'b0;
@@ -66,6 +70,7 @@ module reg_file(
         out1 <= reg_file[read_1_addr];
         out2 <= reg_file[read_2_addr];
         out3 <= reg_file[read_3_addr];
+        out4 <= reg_file[read_4_addr];
     end
     
     always @ (negedge clk) begin

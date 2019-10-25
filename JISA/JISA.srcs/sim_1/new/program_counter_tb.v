@@ -26,6 +26,7 @@ module program_counter_tb(
     
     reg clk;
     reg [15:0] in;
+    reg halt;
     reg reset;
     wire [15:0] out;
     
@@ -33,25 +34,35 @@ module program_counter_tb(
         .clk(clk),
         .in(in),
         .reset(reset),
-        .out(out)
+        .out(out),
+        .halt(halt)
     );
     
-    initial begin
-        clk = 0;
-        reset = 1;
-        in = 16'b0;
-        #10;
-        reset <= 0;
-    end
+    integer i;
     
-    always begin
+     always begin
         clk <= ~clk;
         #10;
      end
-     
-     always @ (negedge clk) begin
-        in <= out + 1;
-     end
+    
+    initial begin
+        halt = 0;
+        reset <= 1;
+        in <= 16'b0;
+        #10;
+        reset <= 0;
+        clk <= 0;
+        
+        for (i = 0; i < 16; i = i + 1) begin
+             @ (posedge clk) begin
+                 #1;
+                 in <= out + 1;
+             end
+        end
+        
+        @ (negedge clk)
+        halt <= 1;
+    end
      
      
 endmodule

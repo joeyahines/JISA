@@ -45,7 +45,10 @@ module memory(
     assign read_data_3 = out3;
     
     always @ (reset) begin
-        mem[0] = 16'b0;
+        mem[0] = 16'b0000010100111011;
+        mem[1] = 16'b0000010101001011;
+        mem[2] = 16'b0100001101010001;
+        mem[3] = 16'b0;
         out1 = 16'bZ;
         out2 = 16'bZ;
         out3 = 16'bZ;

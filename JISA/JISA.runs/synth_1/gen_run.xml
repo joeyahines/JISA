@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1572708723">
-  <File Type="PA-TCL" Name="jisa_cpu.tcl"/>
-  <File Type="REPORTS-TCL" Name="jisa_cpu_reports.tcl"/>
   <File Type="RDS-RDS" Name="jisa_cpu.vds"/>
-  <File Type="RDS-UTIL" Name="jisa_cpu_utilization_synth.rpt"/>
-  <File Type="RDS-DCP" Name="jisa_cpu.dcp"/>
+  <File Type="REPORTS-TCL" Name="jisa_cpu_reports.tcl"/>
   <File Type="RDS-UTIL-PB" Name="jisa_cpu_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="jisa_cpu.dcp"/>
+  <File Type="PA-TCL" Name="jisa_cpu.tcl"/>
+  <File Type="RDS-UTIL" Name="jisa_cpu_utilization_synth.rpt"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/alu.v">

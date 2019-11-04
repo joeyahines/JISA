@@ -25,12 +25,14 @@ module jisa_cpu(
     input clk,
     input [3:0] inr,
     output [15:0] outr,
-    output halt
+    output halt,
+    output [15:0] datapath_out,
+    output [15:0] pc_count_in
     );
     
     // Bus signals
     wire [15:0] instr;
-    wire [15:0] pc_count_in;
+    //wire [15:0] pc_count_in;
     wire [15:0] pc_count_out;
     wire [15:0] alu_out;
     wire [15:0] mem_out;
@@ -38,15 +40,13 @@ module jisa_cpu(
     wire [15:0] src2;
     wire [15:0] alu_src1;
     wire [15:0] alu_src2;
-    wire [15:0] alu_result;
     wire [15:0] imm;
     wire [15:0] branch_addr;
-    wire [15:0] write_addr;
     wire [15:0] write_data;
-    wire [15:0] datapath_out;
+    //wire [15:0] datapath_out;
     
     wire [3:0] branch_reg;
-    
+    wire [3:0] write_addr;
     wire [1:0] alu_op;
     
     
@@ -72,7 +72,7 @@ module jisa_cpu(
                         );
                         
     alu pc_adder (.src1(pc_count_out),
-                  .src2(16'b0),
+                  .src2(16'b1),
                   .op(2'b0),
                   .zero(),
                   .lt_zero(),
@@ -113,19 +113,19 @@ module jisa_cpu(
               .zero(eq),
               .lt_zero(gt),
               .gt_zero(lt),
-              .alu_result(alu_result));
+              .alu_result(alu_out));
     
     // ALU Source One Control
     mux src1_mux(.in1(src1),
                  .in2(16'b0),
                  .sel(src1_sel),
-                 .out(src1));
+                 .out(alu_src1));
     
     // ALU Source Two Control
     mux src2_mux(.in1(src2),
                  .in2(imm),
                  .sel(src2_sel),
-                 .out(src2));
+                 .out(alu_src2));
     
     // Sign Extender/Imm Unit
     sign_extender imm_unit( .instr(instr),
@@ -156,7 +156,7 @@ module jisa_cpu(
     
     // write addr mux
     mux write_addr_mux(.in1(instr[`DEST]),
-                        .in2(pc_count_in),
+                        .in2(16'b10),
                         .sel(branch),
                         .out(write_addr));
     

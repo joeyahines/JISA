@@ -66,17 +66,26 @@ module reg_file(
         reg_file[15] = 16'b0;     
     end
     
-    always @ (posedge clk) begin
-        out1 <= reg_file[read_1_addr];
-        out2 <= reg_file[read_2_addr];
-        out3 <= reg_file[read_3_addr];
-        out4 <= reg_file[read_4_addr];
+    always @ (read_1_addr or posedge clk) begin
+        out1 = reg_file[read_1_addr];
+    end
+    
+    always @ (read_2_addr or posedge clk) begin
+        out2 = reg_file[read_2_addr];
+    end
+    
+    always @ (read_3_addr or posedge clk) begin
+        out3 = reg_file[read_3_addr];
+    end
+    
+    always @ (read_4_addr or posedge clk) begin
+        out4 = reg_file[read_4_addr];
     end
     
     always @ (negedge clk) begin
         if (write_en) begin
             if (write_addr) begin
-                reg_file[write_addr] <= write_data;
+                reg_file[write_addr] = write_data;
             end
         end
     end

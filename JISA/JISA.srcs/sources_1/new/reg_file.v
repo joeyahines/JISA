@@ -45,25 +45,25 @@ module reg_file(
     assign read_1_data = out1;
     assign read_2_data = out2;
     assign read_3_data = out3;
-    assign read_4_data = out3;
+    assign read_4_data = out4;
 
     always @ (reset) begin
-        reg_file[0] <= 16'b0;
-        reg_file[1] <= 16'b0;
-        reg_file[2] <= 16'b0;
-        reg_file[3] <= 16'b0;
-        reg_file[4] <= 16'b0;
-        reg_file[5] <= 16'b0;
-        reg_file[6] <= 16'b0;
-        reg_file[7] <= 16'b0;
-        reg_file[8] <= 16'b0;
-        reg_file[9] <= 16'b0;
-        reg_file[10] <= 16'b0;
-        reg_file[11] <= 16'b0;
-        reg_file[12] <= 16'b0;
-        reg_file[13] <= 16'b0;
-        reg_file[14] <= 16'b0;
-        reg_file[15] <= 16'b0;     
+        reg_file[0] = 16'b0;
+        reg_file[1] = 16'b0;
+        reg_file[2] = 16'b0;
+        reg_file[3] = 16'b0;
+        reg_file[4] = 16'b0;
+        reg_file[5] = 16'b0;
+        reg_file[6] = 16'b0;
+        reg_file[7] = 16'b0;
+        reg_file[8] = 16'b0;
+        reg_file[9] = 16'b0;
+        reg_file[10] = 16'b0;
+        reg_file[11] = 16'b0;
+        reg_file[12] = 16'b0;
+        reg_file[13] = 16'b0;
+        reg_file[14] = 16'b0;
+        reg_file[15] = 16'b0;     
     end
     
     always @ (posedge clk) begin

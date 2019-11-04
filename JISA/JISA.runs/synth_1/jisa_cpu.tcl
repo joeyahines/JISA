@@ -30,7 +30,17 @@ set_property board_part_repo_paths {/home/joey/.Xilinx/Vivado/2019.1/xhub/board_
 set_property board_part digilentinc.com:nexys4:part0:1.1 [current_project]
 set_property ip_output_repo /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
-read_verilog -library xil_defaultlib /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/mux.v
+read_verilog -library xil_defaultlib {
+  /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/alu.v
+  /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/branch_controller.v
+  /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/decoder_controller.v
+  /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/memory.v
+  /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/mux.v
+  /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/program_counter.v
+  /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/reg_file.v
+  /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/sign_extender.v
+  /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/jisa_cpu.v
+}
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
 # design are intentionally left as such for best results. Dcp files will be
@@ -42,12 +52,12 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 
-synth_design -top mux -part xc7a100tcsg324-1
+synth_design -top jisa_cpu -part xc7a100tcsg324-1
 
 
 # disable binary constraint mode for synth run checkpoints
 set_param constraints.enableBinaryConstraints false
-write_checkpoint -force -noxdef mux.dcp
-create_report "synth_1_synth_report_utilization_0" "report_utilization -file mux_utilization_synth.rpt -pb mux_utilization_synth.pb"
+write_checkpoint -force -noxdef jisa_cpu.dcp
+create_report "synth_1_synth_report_utilization_0" "report_utilization -file jisa_cpu_utilization_synth.rpt -pb jisa_cpu_utilization_synth.pb"
 file delete __synthesis_is_running__
 close [open __synthesis_is_complete__ w]

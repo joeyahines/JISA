@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
+`include "macros.v"
 module branch_controller(
     input [15:0] instr,
     input eq,
@@ -28,26 +28,6 @@ module branch_controller(
     output [3:0] branch_reg_addr,
     output branch
     );
-    `define EQUAL 'b000
-    `define NOT_EQUAL 'b001
-    
-    `define LESS_THAN 'b100
-    `define LESS_THAN_EQ 'b101
-    
-    `define GREATER_THAN 'b010
-    `define GREATER_THAN_EQ 'b011
-    
-    `define JUMP 'b110
-    
-    `define br_0 'b00
-    `define br_1 'b10
-    `define br_2 'b01
-    `define br_3 'b11
-    
-    `define temp_reg4 'b1110
-    `define temp_reg5 'b0001
-    `define save_reg5 'b0111
-    `define save_reg6 'b1111
     
     
     reg br;
@@ -57,7 +37,7 @@ module branch_controller(
     assign branch_reg_addr = br_reg;
     
     always @ (instr[15:0] or eq or lt or gt) begin
-        if (instr[2:0] == 'b101) begin
+        if (instr[2:0] == `BRANCH_JUMP) begin
             case(instr[5:3])
             `EQUAL: br = eq ? 'b1 : 'b0;
             `NOT_EQUAL: br = eq ? 1'b0 : 1'b1;
@@ -76,7 +56,7 @@ module branch_controller(
     
     always @ (instr[15:0] or eq or lt or gt) begin
         if (instr[5:3] == `JUMP) begin
-            br_reg = instr[11:8];
+            br_reg = instr[`SRC1];
         end
         else begin
             case (instr[7:6])

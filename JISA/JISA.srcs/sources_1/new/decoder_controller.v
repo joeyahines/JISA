@@ -18,7 +18,7 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-
+`include "macros.v"
 module decoder_controller(
     input [15:0] instr,
     output [1:0] alu_op,
@@ -38,14 +38,6 @@ module decoder_controller(
     reg mem_read_in;
     reg reg_write_in;
     
-    `define HALT 'b000
-    `define ADD_SUB 'b100
-    `define OR_AND 'b010
-    `define LOAD 'b110
-    `define STORE 'b001
-    `define BRANCH_JUMP 'b101
-    `define OP1 3
-    
     assign halt = halt_in;
     assign alu_op = alu_op_in;
     assign src1_sel = src1_sel_in;
@@ -58,7 +50,7 @@ module decoder_controller(
     always @ (instr[15:0]) begin
         case (instr[2:0])
         //halt or invalid
-        default: begin
+        `HALT: begin
             halt_in= 1;
             alu_op_in = 'b00;
             src1_sel_in = 'b0;

@@ -18,7 +18,7 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-
+`include "macros.v"
 
 module alu(
     input [15:0] src1,
@@ -29,10 +29,6 @@ module alu(
     output gt_zero,
     output [15:0] alu_result
     );
-    `define ADD 'b00
-    `define SUB 'b01
-    `define AND 'b10
-    `define OR  'b11
     
     reg [15:0] result;
     

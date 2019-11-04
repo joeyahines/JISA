@@ -19,15 +19,11 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
+`include "macros.v"
 module sign_extender(
     input [15:0] instr,
     output [15:0] imm
     );
-    
-    `define LOAD 'b110
-    `define STORE 'b001
-    `define OP1 3
     
     reg [15:0] value;
     
@@ -38,29 +34,29 @@ module sign_extender(
             //LOADI
             if (instr[`OP1]) begin
                 if (instr[15] == 1) begin
-                    value = 16'b1111111100000000 | instr[15:8];
+                    value = 16'b1111111100000000 | instr[`LOADI_OFFSET];
                  end
                  else begin
-                    value = 'b0000000000000000 | instr[15:8];
+                    value = 'b0000000000000000 | instr[`LOADI_OFFSET];
                  end
             end
             //LOADW
             else begin
                 if (instr[15] == 1) begin
-                    value = 16'b1111111111110000 | instr[15:12];
+                    value = 16'b1111111111110000 | instr[`LOADW_OFFSET];
                  end
                  else begin
-                    value = 'b0000000000000000 | instr[15:12];
+                    value = 'b0000000000000000 | instr[`LOADI_OFFSET];
                  end
             end
         end
         //STOREW
         else if (instr[2:0] == `STORE) begin
             if (instr[7] == 1) begin
-                value = 16'b1111111111110000 | instr[7:4];
+                value = 16'b1111111111110000 | instr[`STOREW_OFFSET];
              end
              else begin
-                value = 'b0000000000000000 | instr[7:4];
+                value = 'b0000000000000000 | instr[`STOREW_OFFSET];
              end
         end
     end

@@ -27,13 +27,14 @@ module jisa_cpu(
     output [15:0] outr,
     output halt,
     output [15:0] datapath_out,
-    output [15:0] pc_count_in
+    output [15:0] pc_out
     );
     
     // Bus signals
     wire [15:0] instr;
     //wire [15:0] pc_count_in;
-    wire [15:0] pc_count_out;
+    wire [15:0] pc_plus_1;
+    wire [15:0] new_pc;
     wire [15:0] alu_out;
     wire [15:0] mem_out;
     wire [15:0] src1;
@@ -64,28 +65,29 @@ module jisa_cpu(
     
     
     // PC Counter 
-    program_counter pc (.in(pc_count_in), 
-                        .out(pc_count_out), 
+    program_counter pc (.in(new_pc), 
+                        .out(pc_out), 
                         .clk(clk),
                         .reset(reset),
                         .halt(halt)
                         );
                         
-    alu pc_adder (.src1(pc_count_out),
+    alu pc_adder (.src1(pc_out),
                   .src2(16'b1),
                   .op(2'b0),
                   .zero(),
                   .lt_zero(),
                   .gt_zero(),
-                  .alu_result(pc_count_in)
+                  .alu_result(pc_plus_1)
                   );
                   
-    mux pc_mux (.in1(pc_count_in),
+    mux pc_mux (.in1(pc_plus_1),
                 .in2(branch_addr),
-                .sel(branch));
+                .sel(branch),
+                .out(new_pc));
     
     // Memory
-    memory main_memory (.read_addr_1(pc_count_out), 
+    memory main_memory (.read_addr_1(pc_out), 
                         .read_data_1(instr), 
                         .read_addr_2(alu_out), 
                         .read_data_2(mem_out), 
@@ -111,8 +113,8 @@ module jisa_cpu(
               .src2(alu_src2),
               .op(alu_op),
               .zero(eq),
-              .lt_zero(gt),
-              .gt_zero(lt),
+              .lt_zero(lt),
+              .gt_zero(gt),
               .alu_result(alu_out));
     
     // ALU Source One Control
@@ -150,7 +152,7 @@ module jisa_cpu(
     
     // write value mux
     mux write_value_mux(.in1(datapath_out),
-                        .in2(pc_count_in),
+                        .in2(pc_plus_1),
                         .sel(branch),
                         .out(write_data));
     

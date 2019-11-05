@@ -86,9 +86,9 @@ extern void execute_85(char*, char *);
 extern void execute_86(char*, char *);
 extern void execute_87(char*, char *);
 extern void vlog_transfunc_eventcallback(char*, char*, unsigned, unsigned, unsigned, char *);
-extern void transaction_22(char*, char*, unsigned, unsigned, unsigned);
-extern void transaction_34(char*, char*, unsigned, unsigned, unsigned);
-funcp funcTab[45] = {(funcp)execute_35, (funcp)execute_36, (funcp)execute_80, (funcp)execute_81, (funcp)execute_82, (funcp)execute_69, (funcp)execute_75, (funcp)execute_76, (funcp)execute_77, (funcp)execute_78, (funcp)execute_79, (funcp)execute_4, (funcp)execute_5, (funcp)execute_6, (funcp)execute_41, (funcp)execute_8, (funcp)vlog_simple_process_execute_0_fast_no_reg_no_agg, (funcp)execute_43, (funcp)execute_44, (funcp)execute_45, (funcp)execute_46, (funcp)execute_11, (funcp)execute_12, (funcp)execute_13, (funcp)execute_15, (funcp)execute_21, (funcp)execute_23, (funcp)execute_24, (funcp)execute_25, (funcp)execute_26, (funcp)execute_27, (funcp)execute_28, (funcp)execute_32, (funcp)execute_33, (funcp)execute_38, (funcp)execute_39, (funcp)execute_40, (funcp)execute_83, (funcp)execute_84, (funcp)execute_85, (funcp)execute_86, (funcp)execute_87, (funcp)vlog_transfunc_eventcallback, (funcp)transaction_22, (funcp)transaction_34};
+extern void transaction_23(char*, char*, unsigned, unsigned, unsigned);
+extern void transaction_35(char*, char*, unsigned, unsigned, unsigned);
+funcp funcTab[45] = {(funcp)execute_35, (funcp)execute_36, (funcp)execute_80, (funcp)execute_81, (funcp)execute_82, (funcp)execute_69, (funcp)execute_75, (funcp)execute_76, (funcp)execute_77, (funcp)execute_78, (funcp)execute_79, (funcp)execute_4, (funcp)execute_5, (funcp)execute_6, (funcp)execute_41, (funcp)execute_8, (funcp)vlog_simple_process_execute_0_fast_no_reg_no_agg, (funcp)execute_43, (funcp)execute_44, (funcp)execute_45, (funcp)execute_46, (funcp)execute_11, (funcp)execute_12, (funcp)execute_13, (funcp)execute_15, (funcp)execute_21, (funcp)execute_23, (funcp)execute_24, (funcp)execute_25, (funcp)execute_26, (funcp)execute_27, (funcp)execute_28, (funcp)execute_32, (funcp)execute_33, (funcp)execute_38, (funcp)execute_39, (funcp)execute_40, (funcp)execute_83, (funcp)execute_84, (funcp)execute_85, (funcp)execute_86, (funcp)execute_87, (funcp)vlog_transfunc_eventcallback, (funcp)transaction_23, (funcp)transaction_35};
 const int NumRelocateId= 45;
 
 void relocate(char *dp)

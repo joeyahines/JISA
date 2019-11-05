@@ -33,7 +33,7 @@ module program_counter(
     
     assign out = stop ? 16'bz : pc;
     
-    always @ (posedge clk) begin
+    always @ (negedge clk) begin
         pc = in;
     end    
     

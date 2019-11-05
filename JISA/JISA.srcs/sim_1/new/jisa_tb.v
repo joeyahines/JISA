@@ -43,7 +43,7 @@ module jisa_tb(
      initial begin
         reset = 1;
         clk = 0;
-        inr = 5;
+        inr = 8;
         #2;
         reset = 0;
      end

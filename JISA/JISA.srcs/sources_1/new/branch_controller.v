@@ -36,7 +36,7 @@ module branch_controller(
     assign branch = br;
     assign branch_reg_addr = br_reg;
     
-    always @ (instr[15:0] or eq or lt or gt) begin
+    always @ (instr[15:0] or gt or eq or lt) begin
         if (instr[2:0] == `BRANCH_JUMP) begin
             case(instr[5:3])
             `EQUAL: br = eq ? 'b1 : 'b0;

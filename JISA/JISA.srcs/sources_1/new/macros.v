@@ -22,12 +22,12 @@
 // Registers
 
 `define br_0 'b00
-`define br_1 'b10
-`define br_2 'b01
+`define br_1 'b01
+`define br_2 'b10
 `define br_3 'b11
 
-`define temp_reg4 'b1110
-`define temp_reg5 'b0001
+`define temp_reg4 'b0111
+`define temp_reg5 'b1000
 `define save_reg5 'b0111
 `define save_reg6 'b1111
 
@@ -54,8 +54,8 @@
 // ALU Ops
 `define ADD 'b00
 `define SUB 'b01
-`define AND 'b10
-`define OR  'b11
+`define OR  'b10
+`define AND 'b11
 
 // Instr Parts
 `define DEST 7:4

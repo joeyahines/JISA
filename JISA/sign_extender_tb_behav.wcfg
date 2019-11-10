@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="716756466fs"></ZoomStartTime>
-      <ZoomEndTime time="873323676fs"></ZoomEndTime>
-      <Cursor1Time time="770000000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="247579051fs"></ZoomEndTime>
+      <Cursor1Time time="70000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="94"></ValueColumnWidth>
+      <ValueColumnWidth column_width="74"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="28" />
+   <WVObjectSize size="31" />
    <wvobject type="logic" fp_name="/jisa_tb/reset">
       <obj_property name="ElementShortName">reset</obj_property>
       <obj_property name="ObjectShortName">reset</obj_property>
@@ -43,6 +43,7 @@
    <wvobject type="array" fp_name="/jisa_tb/uut/instr">
       <obj_property name="ElementShortName">instr[15:0]</obj_property>
       <obj_property name="ObjectShortName">instr[15:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/jisa_tb/uut/datapath_out">
       <obj_property name="ElementShortName">datapath_out[15:0]</obj_property>
@@ -64,10 +65,6 @@
       <obj_property name="ElementShortName">branch_reg[3:0]</obj_property>
       <obj_property name="ObjectShortName">branch_reg[3:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/jisa_tb/uut/branch">
-      <obj_property name="ElementShortName">branch</obj_property>
-      <obj_property name="ObjectShortName">branch</obj_property>
-   </wvobject>
    <wvobject type="array" fp_name="/jisa_tb/uut/alu_op">
       <obj_property name="ElementShortName">alu_op[1:0]</obj_property>
       <obj_property name="ObjectShortName">alu_op[1:0]</obj_property>
@@ -80,14 +77,6 @@
       <obj_property name="ElementShortName">mem_read</obj_property>
       <obj_property name="ObjectShortName">mem_read</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/jisa_tb/uut/src1_sel">
-      <obj_property name="ElementShortName">src1_sel</obj_property>
-      <obj_property name="ObjectShortName">src1_sel</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/jisa_tb/uut/src2_sel">
-      <obj_property name="ElementShortName">src2_sel</obj_property>
-      <obj_property name="ObjectShortName">src2_sel</obj_property>
-   </wvobject>
    <wvobject type="logic" fp_name="/jisa_tb/uut/reg_write">
       <obj_property name="ElementShortName">reg_write</obj_property>
       <obj_property name="ObjectShortName">reg_write</obj_property>
@@ -95,6 +84,18 @@
    <wvobject type="logic" fp_name="/jisa_tb/uut/write_en">
       <obj_property name="ElementShortName">write_en</obj_property>
       <obj_property name="ObjectShortName">write_en</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/jisa_tb/uut/reg_file/out3">
+      <obj_property name="ElementShortName">out3[15:0]</obj_property>
+      <obj_property name="ObjectShortName">out3[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/jisa_tb/uut/reg_file/read_3_addr">
+      <obj_property name="ElementShortName">read_3_addr[3:0]</obj_property>
+      <obj_property name="ObjectShortName">read_3_addr[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/jisa_tb/uut/branch">
+      <obj_property name="ElementShortName">branch</obj_property>
+      <obj_property name="ObjectShortName">branch</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/jisa_tb/uut/eq">
       <obj_property name="ElementShortName">eq</obj_property>
@@ -112,9 +113,17 @@
       <obj_property name="ElementShortName">alu_src1[15:0]</obj_property>
       <obj_property name="ObjectShortName">alu_src1[15:0]</obj_property>
    </wvobject>
+   <wvobject type="logic" fp_name="/jisa_tb/uut/src1_sel">
+      <obj_property name="ElementShortName">src1_sel</obj_property>
+      <obj_property name="ObjectShortName">src1_sel</obj_property>
+   </wvobject>
    <wvobject type="array" fp_name="/jisa_tb/uut/alu_src2">
       <obj_property name="ElementShortName">alu_src2[15:0]</obj_property>
       <obj_property name="ObjectShortName">alu_src2[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/jisa_tb/uut/src2_sel">
+      <obj_property name="ElementShortName">src2_sel</obj_property>
+      <obj_property name="ObjectShortName">src2_sel</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/jisa_tb/uut/imm">
       <obj_property name="ElementShortName">imm[15:0]</obj_property>
@@ -131,5 +140,9 @@
    <wvobject type="array" fp_name="/jisa_tb/uut/write_addr">
       <obj_property name="ElementShortName">write_addr[3:0]</obj_property>
       <obj_property name="ObjectShortName">write_addr[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/jisa_tb/uut/reg_file/reg_file">
+      <obj_property name="ElementShortName">reg_file[15:0][15:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_file[15:0][15:0]</obj_property>
    </wvobject>
 </wave_config>

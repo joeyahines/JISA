@@ -126,6 +126,7 @@ module decoder_controller(
         end
         `BRANCH_JUMP: begin
             src1_sel_in = 'b0;
+            src2_sel_in = 'b0;
             alu_op_in = 'b01;
             mem_read_in = 'b0;
             mem_write_in = 'b0;

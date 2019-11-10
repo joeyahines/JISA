@@ -19,21 +19,25 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
 module jisa_cpu(
     input reset,
     input clk,
     input [3:0] inr,
     output [15:0] outr,
     output halt,
-    output [15:0] datapath_out,
-    output [15:0] pc_out
+    output [10:0] read_addr_1,
+    output [10:0] read_addr_2,
+    input [15:0] read_data_1,
+    input [15:0] read_data_2,
+    output [15:0] mem_write_data,
+    output [10:0] mem_write_addr,
+    output mem_write
     );
     
     // Bus signals
     wire [15:0] instr;
-    //wire [15:0] pc_count_in;
     wire [15:0] pc_plus_1;
+    wire [15:0] pc_out;
     wire [15:0] new_pc;
     wire [15:0] alu_out;
     wire [15:0] mem_out;
@@ -43,16 +47,17 @@ module jisa_cpu(
     wire [15:0] alu_src2;
     wire [15:0] imm;
     wire [15:0] branch_addr;
+    wire [15:0] datapath_out;
     wire [15:0] write_data;
-    //wire [15:0] datapath_out;
     
     wire [3:0] branch_reg;
     wire [3:0] write_addr;
+    
     wire [1:0] alu_op;
     
     
     // Control Flags
-    wire mem_write;
+    //wire mem_write;
     wire mem_read;
     wire src1_sel;
     wire src2_sel;
@@ -62,6 +67,13 @@ module jisa_cpu(
     wire reg_write;
     wire branch;
     wire write_en;
+
+    assign read_addr_1 = pc_out;
+    assign read_addr_2 = alu_out;
+    assign instr = read_data_1;
+    assign mem_out = read_data_1;
+    assign mem_write_addr = alu_out;
+    assign mem_write_data = src2;
     
     
     // PC Counter 
@@ -85,18 +97,7 @@ module jisa_cpu(
                 .in2(branch_addr),
                 .sel(branch),
                 .out(new_pc));
-    
-    // Memory
-    memory main_memory (.read_addr_1(pc_out), 
-                        .read_data_1(instr), 
-                        .read_addr_2(alu_out), 
-                        .read_data_2(mem_out), 
-                        .write_data(src2), 
-                        .write_addr(alu_out), 
-                        .clk(clk),
-                        .reset(reset),
-                        .write_en(mem_write)
-                        );
+   
     
     // Decoder and Controller
     decoder_controller controller ( .instr(instr),

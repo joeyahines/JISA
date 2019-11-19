@@ -66,19 +66,19 @@ module reg_file(
         reg_file[15] = 16'b0;     
     end
     
-    always @ (read_1_addr or posedge clk) begin
+    always @ (read_1_addr or clk) begin
         out1 = reg_file[read_1_addr];
     end
     
-    always @ (read_2_addr or posedge clk) begin
+    always @ (read_2_addr or clk) begin
         out2 = reg_file[read_2_addr];
     end
     
-    always @ (read_3_addr or posedge clk) begin
+    always @ (read_3_addr or clk) begin
         out3 = reg_file[read_3_addr];
     end
     
-    always @ (read_4_addr or posedge clk) begin
+    always @ (read_4_addr or clk) begin
         out4 = reg_file[read_4_addr];
     end
     

@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1572708723">
-  <File Type="PA-TCL" Name="jisa_cpu.tcl"/>
-  <File Type="RDS-UTIL" Name="jisa_cpu_utilization_synth.rpt"/>
-  <File Type="REPORTS-TCL" Name="jisa_cpu_reports.tcl"/>
-  <File Type="RDS-UTIL-PB" Name="jisa_cpu_utilization_synth.pb"/>
-  <File Type="RDS-RDS" Name="jisa_cpu.vds"/>
-  <File Type="RDS-DCP" Name="jisa_cpu.dcp"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1574179197">
+  <File Type="PA-TCL" Name="jisa_top_level.tcl"/>
+  <File Type="REPORTS-TCL" Name="jisa_top_level_reports.tcl"/>
+  <File Type="RDS-RDS" Name="jisa_top_level.vds"/>
+  <File Type="RDS-UTIL" Name="jisa_top_level_utilization_synth.rpt"/>
+  <File Type="RDS-DCP" Name="jisa_top_level.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="jisa_top_level_utilization_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/new/macros.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/alu.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -23,6 +30,13 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/decoder_controller.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/jisa_cpu.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -64,16 +78,8 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/jisa_cpu.v">
+    <File Path="$PSRCDIR/sources_1/new/jisa_top_level.v">
       <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/memory_tb.v">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -81,11 +87,17 @@
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="jisa_cpu"/>
+      <Option Name="TopModule" Val="jisa_top_level"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
     <Filter Type="Constrs"/>
+    <File Path="$PPRDIR/Nexys-4-DDR-Master.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="ConstrsType" Val="XDC"/>
     </Config>

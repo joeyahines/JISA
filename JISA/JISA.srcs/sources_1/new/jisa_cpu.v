@@ -24,7 +24,6 @@ module jisa_cpu(
     input clk,
     input [3:0] inr,
     output [15:0] outr,
-    output halt,
     output [10:0] read_addr_1,
     output [10:0] read_addr_2,
     input [15:0] read_data_1,
@@ -67,11 +66,12 @@ module jisa_cpu(
     wire reg_write;
     wire branch;
     wire write_en;
+    wire halt;
 
     assign read_addr_1 = pc_out;
     assign read_addr_2 = alu_out;
     assign instr = read_data_1;
-    assign mem_out = read_data_1;
+    assign mem_out = read_data_2;
     assign mem_write_addr = alu_out;
     assign mem_write_data = src2;
     

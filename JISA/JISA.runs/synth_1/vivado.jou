@@ -2,11 +2,11 @@
 # Vivado v2019.1.2 (64-bit)
 # SW Build 2615518 on Fri Aug  9 15:53:29 MDT 2019
 # IP Build 2614745 on Fri Aug  9 20:55:02 MDT 2019
-# Start of session at: Sat Nov  2 10:32:06 2019
-# Process ID: 21176
+# Start of session at: Tue Nov 19 09:59:59 2019
+# Process ID: 31281
 # Current directory: /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.runs/synth_1
-# Command line: vivado -log jisa_cpu.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source jisa_cpu.tcl
-# Log file: /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.runs/synth_1/jisa_cpu.vds
+# Command line: vivado -log jisa_top_level.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source jisa_top_level.tcl
+# Log file: /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.runs/synth_1/jisa_top_level.vds
 # Journal file: /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.runs/synth_1/vivado.jou
 #-----------------------------------------------------------
-source jisa_cpu.tcl -notrace
+source jisa_top_level.tcl -notrace

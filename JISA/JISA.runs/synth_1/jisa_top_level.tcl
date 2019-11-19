@@ -17,6 +17,7 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
+set_param chipscope.maxJobs 2
 create_project -in_memory -part xc7a100tcsg324-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -31,15 +32,17 @@ set_property board_part digilentinc.com:nexys4:part0:1.1 [current_project]
 set_property ip_output_repo /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 read_verilog -library xil_defaultlib {
+  /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/macros.v
   /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/alu.v
   /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/branch_controller.v
   /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/decoder_controller.v
+  /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/jisa_cpu.v
   /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/memory.v
   /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/mux.v
   /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/program_counter.v
   /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/reg_file.v
   /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/sign_extender.v
-  /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/jisa_cpu.v
+  /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.srcs/sources_1/new/jisa_top_level.v
 }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -49,15 +52,18 @@ read_verilog -library xil_defaultlib {
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
+read_xdc /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/Nexys-4-DDR-Master.xdc
+set_property used_in_implementation false [get_files /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/Nexys-4-DDR-Master.xdc]
+
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 
-synth_design -top jisa_cpu -part xc7a100tcsg324-1
+synth_design -top jisa_top_level -part xc7a100tcsg324-1
 
 
 # disable binary constraint mode for synth run checkpoints
 set_param constraints.enableBinaryConstraints false
-write_checkpoint -force -noxdef jisa_cpu.dcp
-create_report "synth_1_synth_report_utilization_0" "report_utilization -file jisa_cpu_utilization_synth.rpt -pb jisa_cpu_utilization_synth.pb"
+write_checkpoint -force -noxdef jisa_top_level.dcp
+create_report "synth_1_synth_report_utilization_0" "report_utilization -file jisa_top_level_utilization_synth.rpt -pb jisa_top_level_utilization_synth.pb"
 file delete __synthesis_is_running__
 close [open __synthesis_is_complete__ w]

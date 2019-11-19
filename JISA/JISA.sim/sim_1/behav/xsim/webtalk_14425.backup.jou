@@ -2,11 +2,11 @@
 # Webtalk v2019.1.2 (64-bit)
 # SW Build 2615518 on Fri Aug  9 15:53:29 MDT 2019
 # IP Build 2614745 on Fri Aug  9 20:55:02 MDT 2019
-# Start of session at: Fri Nov  8 11:08:29 2019
-# Process ID: 21285
+# Start of session at: Mon Nov 18 15:35:41 2019
+# Process ID: 14425
 # Current directory: /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.sim/sim_1/behav/xsim
-# Command line: wbtcv -mode batch -source /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.sim/sim_1/behav/xsim/xsim.dir/jisa_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+# Command line: wbtcv -mode batch -source /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.sim/sim_1/behav/xsim/xsim.dir/top_level_tb_behav/webtalk/xsim_webtalk.tcl -notrace
 # Log file: /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.sim/sim_1/behav/xsim/webtalk.log
 # Journal file: /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.sim/sim_1/behav/xsim/webtalk.jou
 #-----------------------------------------------------------
-source /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.sim/sim_1/behav/xsim/xsim.dir/jisa_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+source /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.sim/sim_1/behav/xsim/xsim.dir/top_level_tb_behav/webtalk/xsim_webtalk.tcl -notrace

@@ -24,12 +24,11 @@ module jisa_cpu(
     input clk,
     input [3:0] inr,
     output [15:0] outr,
-    output [10:0] read_addr_1,
-    output [10:0] read_addr_2,
+    output [9:0] addr_1,
+    output [9:0] addr_2,
     input [15:0] read_data_1,
     input [15:0] read_data_2,
     output [15:0] mem_write_data,
-    output [10:0] mem_write_addr,
     output mem_write
     );
     
@@ -48,15 +47,16 @@ module jisa_cpu(
     wire [15:0] branch_addr;
     wire [15:0] datapath_out;
     wire [15:0] write_data;
+    wire [15:0] ret_addr;
     
     wire [3:0] branch_reg;
     wire [3:0] write_addr;
+   
     
     wire [1:0] alu_op;
     
     
     // Control Flags
-    //wire mem_write;
     wire mem_read;
     wire src1_sel;
     wire src2_sel;
@@ -68,11 +68,10 @@ module jisa_cpu(
     wire write_en;
     wire halt;
 
-    assign read_addr_1 = pc_out;
-    assign read_addr_2 = alu_out;
+    assign addr_1 = pc_out;
+    assign addr_2 = alu_out;
     assign instr = read_data_1;
     assign mem_out = read_data_2;
-    assign mem_write_addr = alu_out;
     assign mem_write_data = src2;
     
     
@@ -151,9 +150,14 @@ module jisa_cpu(
     // write_en or
     or(write_en, branch, reg_write);
     
+    // return addr temp register
+    register pc_plus_1_reg(.in(pc_plus_1),
+                           .out(ret_addr),
+                           .clk(clk));
+    
     // write value mux
     mux write_value_mux(.in1(datapath_out),
-                        .in2(pc_plus_1),
+                        .in2(ret_addr),
                         .sel(branch),
                         .out(write_data));
     

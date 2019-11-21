@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.1.2 (64-bit)
+# SW Build 2615518 on Fri Aug  9 15:53:29 MDT 2019
+# IP Build 2614745 on Fri Aug  9 20:55:02 MDT 2019
+# Start of session at: Wed Nov 20 21:51:24 2019
+# Process ID: 16137
+# Current directory: /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.runs/impl_1
+# Command line: vivado -log jisa_output.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source jisa_output.tcl -notrace
+# Log file: /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.runs/impl_1/jisa_output.vdi
+# Journal file: /home/joey/Documents/school/auburn/fall2019/comp_arch/jisa_hdl/JISA/JISA.runs/impl_1/vivado.jou
+#-----------------------------------------------------------
+source jisa_output.tcl -notrace

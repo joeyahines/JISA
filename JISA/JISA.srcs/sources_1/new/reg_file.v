@@ -42,51 +42,32 @@ module reg_file(
     reg [15:0] out4;
     reg [15:0] reg_file [15:0];
     
-    assign read_1_data = out1;
-    assign read_2_data = out2;
-    assign read_3_data = out3;
-    assign read_4_data = out4;
-
-    always @ (reset) begin
-        reg_file[0] = 16'b0;
-        reg_file[1] = 16'b0;
-        reg_file[2] = 16'b0;
-        reg_file[3] = 16'b0;
-        reg_file[4] = 16'b0;
-        reg_file[5] = 16'b0;
-        reg_file[6] = 16'b0;
-        reg_file[7] = 16'b0;
-        reg_file[8] = 16'b0;
-        reg_file[9] = 16'b0;
-        reg_file[10] = 16'b0;
-        reg_file[11] = 16'b0;
-        reg_file[12] = 16'b0;
-        reg_file[13] = 16'b0;
-        reg_file[14] = 16'b0;
-        reg_file[15] = 16'b0;     
-    end
+    assign read_1_data = (read_1_addr) ? reg_file[read_1_addr] : 16'b0;
+    assign read_2_data = (read_2_addr) ? reg_file[read_2_addr] : 16'b0;
+    assign read_3_data = (read_3_addr) ? reg_file[read_3_addr] : 16'b0;
+    assign read_4_data = (read_4_addr) ? reg_file[read_4_addr] : 16'b0;
     
-    always @ (read_1_addr or clk) begin
-        out1 = reg_file[read_1_addr];
-    end
-    
-    always @ (read_2_addr or clk) begin
-        out2 = reg_file[read_2_addr];
-    end
-    
-    always @ (read_3_addr or clk) begin
-        out3 = reg_file[read_3_addr];
-    end
-    
-    always @ (read_4_addr or clk) begin
-        out4 = reg_file[read_4_addr];
-    end
-    
-    always @ (negedge clk) begin
-        if (write_en) begin
-            if (write_addr) begin
-                reg_file[write_addr] = write_data;
-            end
+    always @ (posedge clk or posedge reset) begin
+        if (reset) begin
+                    reg_file[0] <= 16'b0;
+                    reg_file[1] <= 16'b0;
+                    reg_file[2] <= 16'b0;
+                    reg_file[3] <= 16'b0;
+                    reg_file[4] <= 16'b0;
+                    reg_file[5] <= 16'b0;
+                    reg_file[6] <= 16'b0;
+                    reg_file[7] <= 16'b0;
+                    reg_file[8] <= 16'b0;
+                    reg_file[9] <= 16'b0;
+                    reg_file[10] <= 16'b0;
+                    reg_file[11] <= 16'b0;
+                    reg_file[12] <= 16'b0;
+                    reg_file[13] <= 16'b0;
+                    reg_file[14] <= 16'b0;
+                    reg_file[15] <= 16'b0;  
+        end
+        else if (write_en) begin
+            reg_file[write_addr] <= write_data;
         end
     end
         

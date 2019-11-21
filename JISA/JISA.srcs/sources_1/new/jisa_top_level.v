@@ -27,35 +27,38 @@ module jisa_top_level(
     output [15:0] outvalue
     );
     
-    wire [10:0] read_addr_1;
-    wire [10:0] read_addr_2;
+    wire [9:0] addr_1;
+    wire [9:0] addr_2;
     wire [15:0] read_data_1;
     wire [15:0] read_data_2;
     
     wire [15:0] mem_write_data;
-    wire [10:0] mem_write_addr;
     wire write_en;
+    wire clock_inv;
+    
+    assign clock_inv = ~clock;
     
     jisa_cpu cpu (.reset(reset), 
         .clk(clock), 
         .inr(inr), 
         .outr(outvalue),
-        .read_addr_1(read_addr_1),
-        .read_addr_2(read_addr_2), 
+        .addr_1(addr_1),
+        .addr_2(addr_2), 
         .read_data_1(read_data_1), 
         .read_data_2(read_data_2),
         .mem_write_data(mem_write_data),
-        .mem_write_addr(mem_write_addr),
         .mem_write(write_en));
     
     memory memory (.reset(reset), 
-        .clk(clock), 
-        .read_addr_1(read_addr_1),
-        .read_addr_2(read_addr_2), 
+        .clka(clock), 
+        .clkb(clock_inv),
+        .addr_1(addr_1),
+        .addr_2(addr_2), 
         .read_data_1(read_data_1), 
         .read_data_2(read_data_2),
-        .write_data(mem_write_data),
-        .write_addr(mem_write_addr),
-        .write_en(write_en));
+        .write_data_1(16'b0),
+        .write_data_2(mem_write_data),
+        .write_en_1(0),
+        .write_en_2(write_en));
         
 endmodule

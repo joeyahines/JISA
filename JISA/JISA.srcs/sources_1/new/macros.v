@@ -38,7 +38,6 @@
 `define LOAD 'b011
 `define STORE 'b100
 `define BRANCH_JUMP 'b101
-`define OP1 3
 
 // Branch Types
 `define EQUAL 'b000
@@ -58,6 +57,8 @@
 `define AND 'b11
 
 // Instr Parts
+`define OP_CODE 2:0
+`define OP1 3
 `define DEST 7:4
 `define SRC1 11:8
 `define SRC2 15:12

@@ -1,0 +1,101 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.1.2 (lin64) Build 2615518 Fri Aug  9 15:53:29 MDT 2019
+| Date         : Wed Nov 20 21:51:56 2019
+| Host         : jdesk running 64-bit Ubuntu 18.04.3 LTS
+| Command      : report_control_sets -verbose -file jisa_output_control_sets_placed.rpt
+| Design       : jisa_output
+| Device       : xc7a100t
+----------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    23 |
+|    Minimum number of control sets                        |    23 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    21 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    23 |
+| >= 0 to < 4        |     3 |
+| >= 4 to < 6        |     0 |
+| >= 6 to < 8        |     0 |
+| >= 8 to < 10       |     2 |
+| >= 10 to < 12      |     0 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     0 |
+| >= 16              |    18 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              32 |           12 |
+| No           | No                    | Yes                    |               2 |            2 |
+| No           | Yes                   | No                     |               1 |            1 |
+| Yes          | No                    | No                     |               0 |            0 |
+| Yes          | No                    | Yes                    |             272 |          196 |
+| Yes          | Yes                   | No                     |               0 |            0 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++------------------------------+------------------------------+-----------------------------+------------------+----------------+
+|         Clock Signal         |         Enable Signal        |       Set/Reset Signal      | Slice Load Count | Bel Load Count |
++------------------------------+------------------------------+-----------------------------+------------------+----------------+
+|  cpu_mem/cpu/controller/halt |                              | cpu_mem/cpu/reg_file/AR[0]  |                1 |              1 |
+| ~clk/inst/clk_out1           |                              | cpu_mem/cpu/controller/halt |                1 |              1 |
+| ~clk/inst/clk_out1           |                              | cpu_mem/cpu/reg_file/AR[0]  |                1 |              1 |
+|  cpu_mem/memory/E[0]         |                              |                             |                3 |              8 |
+|  cpu_mem/memory/reg_write_in |                              |                             |                4 |              8 |
+|  clk/inst/clk_out1           | cpu_mem/memory/mem_reg_22[0] | cpu_mem/cpu/reg_file/AR[0]  |               12 |             16 |
+| ~clk/inst/clk_out1           | cpu_mem/cpu/controller/E[0]  | cpu_mem/cpu/reg_file/AR[0]  |                7 |             16 |
+|  clk/inst/clk_out1           | cpu_mem/memory/mem_reg_13[0] | cpu_mem/cpu/reg_file/AR[0]  |               12 |             16 |
+|  clk/inst/clk_out1           | cpu_mem/memory/mem_reg_10[0] | cpu_mem/cpu/reg_file/AR[0]  |               12 |             16 |
+| ~clk/inst/clk_out1           |                              |                             |                5 |             16 |
+|  clk/inst/clk_out1           | cpu_mem/memory/mem_reg_9[0]  | cpu_mem/cpu/reg_file/AR[0]  |               11 |             16 |
+|  clk/inst/clk_out1           | cpu_mem/memory/mem_reg_8[0]  | cpu_mem/cpu/reg_file/AR[0]  |               11 |             16 |
+|  clk/inst/clk_out1           | cpu_mem/memory/mem_reg_6[0]  | cpu_mem/cpu/reg_file/AR[0]  |               11 |             16 |
+|  clk/inst/clk_out1           | cpu_mem/memory/mem_reg_23[0] | cpu_mem/cpu/reg_file/AR[0]  |               10 |             16 |
+|  clk/inst/clk_out1           | cpu_mem/memory/mem_reg_11[0] | cpu_mem/cpu/reg_file/AR[0]  |               15 |             16 |
+|  clk/inst/clk_out1           | cpu_mem/memory/mem_reg_20[0] | cpu_mem/cpu/reg_file/AR[0]  |               11 |             16 |
+|  clk/inst/clk_out1           | cpu_mem/memory/mem_reg_19[0] | cpu_mem/cpu/reg_file/AR[0]  |               13 |             16 |
+|  clk/inst/clk_out1           | cpu_mem/memory/mem_reg_18[0] | cpu_mem/cpu/reg_file/AR[0]  |               11 |             16 |
+|  clk/inst/clk_out1           | cpu_mem/memory/mem_reg_17[0] | cpu_mem/cpu/reg_file/AR[0]  |               13 |             16 |
+|  clk/inst/clk_out1           | cpu_mem/memory/mem_reg_16[0] | cpu_mem/cpu/reg_file/AR[0]  |                9 |             16 |
+|  clk/inst/clk_out1           | cpu_mem/memory/mem_reg_15[0] | cpu_mem/cpu/reg_file/AR[0]  |               13 |             16 |
+|  clk/inst/clk_out1           | cpu_mem/memory/mem_reg_14[0] | cpu_mem/cpu/reg_file/AR[0]  |               13 |             16 |
+|  clk/inst/clk_out1           | cpu_mem/memory/mem_reg_12[0] | cpu_mem/cpu/reg_file/AR[0]  |               12 |             16 |
++------------------------------+------------------------------+-----------------------------+------------------+----------------+
+
+

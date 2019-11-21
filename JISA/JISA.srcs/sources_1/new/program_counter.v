@@ -33,16 +33,17 @@ module program_counter(
     
     assign out = stop ? 16'bz : pc;
     
-    always @ (negedge clk) begin
-        pc = in;
+    always @ (negedge clk or posedge reset or posedge halt) begin
+        if (reset) begin
+            stop <= 0;
+            pc <= 16'b0;
+        end
+        else if (halt) begin
+            stop <= 1;
+        end
+        else begin
+            pc <= in;
+        end
     end    
     
-    always @ (posedge reset) begin
-         stop = 0;
-         pc = 0;
-    end
-    
-    always @ (posedge halt) begin;
-        stop = 1;
-    end
 endmodule

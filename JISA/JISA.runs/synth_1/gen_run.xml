@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1574179197">
-  <File Type="PA-TCL" Name="jisa_top_level.tcl"/>
-  <File Type="REPORTS-TCL" Name="jisa_top_level_reports.tcl"/>
-  <File Type="RDS-RDS" Name="jisa_top_level.vds"/>
-  <File Type="RDS-UTIL" Name="jisa_top_level_utilization_synth.rpt"/>
-  <File Type="RDS-DCP" Name="jisa_top_level.dcp"/>
-  <File Type="RDS-UTIL-PB" Name="jisa_top_level_utilization_synth.pb"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1574308191">
+  <File Type="VDS-TIMINGSUMMARY" Name="jisa_output_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="jisa_output.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="jisa_output_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="jisa_output_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="jisa_output_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="jisa_output.vds"/>
+  <File Type="REPORTS-TCL" Name="jisa_output_reports.tcl"/>
+  <File Type="VDS-TIMING-PB" Name="jisa_output_timing_summary_synth.pb"/>
+  <File Type="PA-TCL" Name="jisa_output.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/macros.v">
@@ -43,6 +46,13 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/jisa_top_level.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/memory.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -71,6 +81,13 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/register.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/sign_extender.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -78,16 +95,23 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/jisa_top_level.v">
+    <File Path="$PSRCDIR/sources_1/new/jisa_output.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/hexto7seg.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="jisa_top_level"/>
+      <Option Name="TopModule" Val="jisa_output"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
@@ -112,4 +136,5 @@
     <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
     <Step Id="synth_design"/>
   </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="clk_wiz_0"/>
 </GenRun>

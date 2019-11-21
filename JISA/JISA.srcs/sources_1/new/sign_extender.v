@@ -30,14 +30,14 @@ module sign_extender(
     assign imm = value;
     
     always @ (instr[15:0]) begin
-        if (instr[2:0] == `LOAD) begin
+        if (instr[`OP_CODE] == `LOAD) begin
             //LOADI
             if (instr[`OP1]) begin
                 if (instr[15] == 1) begin
                     value = 16'b1111111100000000 | instr[`LOADI_OFFSET];
                  end
                  else begin
-                    value = 'b0000000000000000 | instr[`LOADI_OFFSET];
+                    value = 16'b0000000000000000 | instr[`LOADI_OFFSET];
                  end
             end
             //LOADW
@@ -46,17 +46,17 @@ module sign_extender(
                     value = 16'b1111111111110000 | instr[`LOADW_OFFSET];
                  end
                  else begin
-                    value = 'b0000000000000000 | instr[`LOADI_OFFSET];
+                    value = 16'b0000000000000000 | instr[`LOADW_OFFSET];
                  end
             end
         end
         //STOREW
-        else if (instr[2:0] == `STORE) begin
+        else if (instr[`OP_CODE] == `STORE) begin
             if (instr[7] == 1) begin
                 value = 16'b1111111111110000 | instr[`STOREW_OFFSET];
              end
              else begin
-                value = 'b0000000000000000 | instr[`STOREW_OFFSET];
+                value = 16'b0000000000000000 | instr[`STOREW_OFFSET];
              end
         end
     end
